@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Alunos Front</title>
+</head>
+
+<body>
+    <h1>Lista de alunos</h1>
+    <ul id="alunos">
+    </ul>
+</body>
+<script>
+    
+
+    async function getAlunos  () {
+        const url = 'https://leonid-backend27062023.azurewebsites.net/api/v1/alunos'
+        const options  = {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+     
+            }
+        }
+        const containerAlunos = document.getElementById('alunos')
+        const response = await fetch(url)
+        const alunos = await response.json()
+        alunos.forEach(aluno => containerAlunos.innerHTML +=  `<li>Nome: ${aluno.nome}</li>`)
+    }
+
+    getAlunos();
+    
+</script>
+
+</html>
